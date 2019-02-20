@@ -13,11 +13,11 @@
       </div>
       <div class="modal-body">
         <div class="d-flex">
-          Name :<input type="text">
+          Name :<input type="text" [(ngModel)]="name">
         </div>
       </div>
       <div class="modal-footer">
-        <button>Add</button> <button (click)="successModal.hide()">Close</button>
+        <button (click)="addRss()">Add</button> <button (click)="successModal.hide()">Close</button>
       </div>
     </div>
   </div>

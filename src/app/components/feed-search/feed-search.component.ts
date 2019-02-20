@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { BsModalService, ModalDirective } from 'ngx-bootstrap';
 
 @Component({
@@ -11,8 +11,11 @@ export class FeedSearchComponent implements OnInit {
 
   @ViewChild('successModal') successModal: ModalDirective;
   @ViewChild('errorModal') errorModal: ModalDirective;
-
+  @Output() outputRss = new EventEmitter();
   url: string = '';
+  name: string = '';
+  feed = {};
+
 
   constructor(
     private http: HttpClient
@@ -26,9 +29,20 @@ export class FeedSearchComponent implements OnInit {
     this.http.get(`${rssToJsonServiceBaseUrl}${this.url}`).subscribe(
       r => {
         console.log(r);
+        this.feed = r;
         this.successModal.show();
       },
       err => { this.errorModal.show(); }
     )
+  }
+
+  addRss() {
+    const data = {
+      name: this.name,
+      feed: this.feed
+    }
+    this.outputRss.emit(data);
+    this.url = '';
+    this.name = '';
   }
 }

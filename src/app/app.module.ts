@@ -1,3 +1,4 @@
+import { AppService } from './app.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -24,6 +25,7 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
     ModalModule.forRoot()
   ],
   providers: [
+    AppService
   ],
   bootstrap: [AppComponent]
 })
