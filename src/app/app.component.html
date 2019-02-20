@@ -1,6 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="body-wrapper" *ngIf="rss$ | async as listRss">
-  <app-side-bar [listRss]="listRss"></app-side-bar>
+  <app-side-bar (choosedFeed)="choosedFeed($event)" [listRss]="listRss"></app-side-bar>
   <div class="main-panel container">
     <app-feed-search (outputRss)="getRss($event)"></app-feed-search>
     <app-feed-list></app-feed-list>

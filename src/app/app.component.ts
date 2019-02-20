@@ -21,7 +21,12 @@ export class AppComponent implements OnInit {
   }
 
   getRss(data) {
+    console.log(data);
     this.listRss.push(data);
     this.appService.updateRss(this.listRss);
+  }
+
+  choosedFeed(data) {
+    console.log(data);
   }
 }

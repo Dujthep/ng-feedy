@@ -1,5 +1,9 @@
 <nav class="sidebar pt-5" id="sidebar">
-  <ul class="nav">
-    asdasd
+  <ul class="nav mainmenu">
+    <ng-container *ngFor="let rss of listRss">
+      <li class="nav-item ">
+        <label class="m-0" (click)="chooseFeed(rss)">{{rss.name}}</label>
+      </li>
+    </ng-container>
   </ul>
 </nav>

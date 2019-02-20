@@ -19,6 +19,33 @@ $orange:  #fdaa34;
     overflow: auto;
 }
 
+.sidebar ul.nav {
+    overflow: hidden;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
 ul.nav {
     padding-inline-start: 20px;
+}
+
+ul.nav li.nav-item {
+    display: block;
+    white-space: nowrap;
+    padding-left: 8px;
+    color: $black;
+}
+
+.mainmenu input {
+    display: none;
+}
+.mainmenu input:checked ~ .submenu {
+    display: block;
+    max-height: 200px;
+}
+
+.submenu {
+    overflow: hidden;
+    max-height: 0;
+    -webkit-transition: all 0.5s ease-out;
 }

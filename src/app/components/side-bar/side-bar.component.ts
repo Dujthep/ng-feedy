@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-side-bar',
@@ -8,10 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SideBarComponent implements OnInit {
 
   @Input() listRss = [];
+  @Output() choosedFeed = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  chooseFeed(feed) {
+    this.choosedFeed.emit(feed);
   }
 
 }

@@ -28,8 +28,7 @@ export class FeedSearchComponent implements OnInit {
     const rssToJsonServiceBaseUrl: string = 'https://rss2json.com/api.json?rss_url=';
     this.http.get(`${rssToJsonServiceBaseUrl}${this.url}`).subscribe(
       r => {
-        console.log(r);
-        this.feed = r;
+        this.feed = r['feed'];
         this.successModal.show();
       },
       err => { this.errorModal.show(); }
@@ -41,6 +40,7 @@ export class FeedSearchComponent implements OnInit {
       name: this.name,
       feed: this.feed
     }
+    this.successModal.hide();
     this.outputRss.emit(data);
     this.url = '';
     this.name = '';
