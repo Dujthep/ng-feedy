@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
 
   listRss = [];
   rss$: Observable<[]>;
+  feed$: Observable<[]>;
 
   constructor(
     private appService: AppService
@@ -18,15 +19,16 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.rss$ = this.appService.asObserveRss;
+    this.feed$ = this.appService.asObserveFeed;
   }
 
   getRss(data) {
-    console.log(data);
     this.listRss.push(data);
     this.appService.updateRss(this.listRss);
   }
 
   choosedFeed(data) {
     console.log(data);
+    this.appService.updateFeed(data.feed);
   }
 }

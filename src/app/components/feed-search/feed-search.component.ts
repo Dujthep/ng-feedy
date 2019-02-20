@@ -28,7 +28,7 @@ export class FeedSearchComponent implements OnInit {
     const rssToJsonServiceBaseUrl: string = 'https://rss2json.com/api.json?rss_url=';
     this.http.get(`${rssToJsonServiceBaseUrl}${this.url}`).subscribe(
       r => {
-        this.feed = r['feed'];
+        this.feed = r;
         this.successModal.show();
       },
       err => { this.errorModal.show(); }
