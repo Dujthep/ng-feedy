@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { BsModalService, ModalDirective } from 'ngx-bootstrap';
+import { Feed } from 'src/app/models/feed';
 
 @Component({
   selector: 'app-feed-search',
@@ -14,7 +15,7 @@ export class FeedSearchComponent implements OnInit {
   @Output() outputRss = new EventEmitter();
   url: string = '';
   name: string = '';
-  feed = {};
+  feed: Feed;
 
 
   constructor(
@@ -27,7 +28,7 @@ export class FeedSearchComponent implements OnInit {
   search() {
     const rssToJsonServiceBaseUrl: string = 'https://rss2json.com/api.json?rss_url=';
     this.http.get(`${rssToJsonServiceBaseUrl}${this.url}`).subscribe(
-      r => {
+      (r: Feed) => {
         this.feed = r;
         this.successModal.show();
       },
@@ -36,10 +37,8 @@ export class FeedSearchComponent implements OnInit {
   }
 
   addRss() {
-    const data = {
-      name: this.name,
-      feed: this.feed
-    }
+    const data:Feed = this.feed;
+    data.name = this.name;
     this.successModal.hide();
     this.outputRss.emit(data);
     this.url = '';

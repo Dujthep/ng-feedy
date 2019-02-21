@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 import { Observable } from 'rxjs';
+import { Feed } from './models/feed';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,8 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit {
 
   listRss = [];
-  rss$: Observable<[]>;
-  feed$: Observable<[]>;
+  rss$: Observable<Feed[]>;
+  feed$: Observable<Feed>;
 
   constructor(
     private appService: AppService
@@ -22,13 +23,13 @@ export class AppComponent implements OnInit {
     this.feed$ = this.appService.asObserveFeed;
   }
 
-  getRss(data) {
+  getRss(data: Feed) {
     this.listRss.push(data);
     this.appService.updateRss(this.listRss);
   }
 
   choosedFeed(data) {
     console.log(data);
-    this.appService.updateFeed(data.feed);
+    this.appService.updateFeed(data);
   }
 }

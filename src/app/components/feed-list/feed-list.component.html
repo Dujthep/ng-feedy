@@ -1,3 +1,13 @@
 <div class="mt-5">
-  {{feed| json}}
+  <ng-container *ngIf="feed">
+    {{feed| json}}
+    <div class="card">
+      <h5 class="card-header">{{feed.name}}</h5>
+      <div class="card-body">
+        <h5 class="card-title">{{feed.feed.title}}</h5>
+        <p class="card-text">{{feed.feed.title}}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </ng-container>
 </div>
