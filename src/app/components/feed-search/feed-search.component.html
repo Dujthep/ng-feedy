@@ -1,4 +1,4 @@
-<div class="d-flex mt-5">
+<div class="d-flex mt-5" (keydown)="enterToSearch($event)">
   <input type="text" [(ngModel)]="url"> <button (click)="search()">Search</button>
 </div>
 
@@ -13,7 +13,8 @@
       </div>
       <div class="modal-body">
         <div class="d-flex">
-          Name :<input type="text" [(ngModel)]="name">
+          Name :<input type="text" [(ngModel)]="name"  (keydown)="enterToAdd($event)">
+          <label *ngIf="invalid" style="color: red">Please input feed name.</label>
         </div>
       </div>
       <div class="modal-footer">

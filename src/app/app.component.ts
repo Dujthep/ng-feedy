@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
   }
 
   choosedFeed(data) {
-    console.log(data);
     this.appService.updateFeed(data);
   }
 }

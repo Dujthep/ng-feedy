@@ -16,6 +16,7 @@ export class FeedSearchComponent implements OnInit {
   url: string = '';
   name: string = '';
   feed: Feed;
+  invalid = false;
 
 
   constructor(
@@ -23,9 +24,22 @@ export class FeedSearchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+  }
+  enterToSearch(event) {
+    if (event.keyCode == 13) {
+      this.search();
+    }
+  }
+
+  enterToAdd(event) {
+    if (event.keyCode == 13) {
+      this.addRss();
+    }
   }
 
   search() {
+    this.invalid = false;
     const rssToJsonServiceBaseUrl: string = 'https://rss2json.com/api.json?rss_url=';
     this.http.get(`${rssToJsonServiceBaseUrl}${this.url}`).subscribe(
       (r: Feed) => {
@@ -37,11 +51,15 @@ export class FeedSearchComponent implements OnInit {
   }
 
   addRss() {
-    const data:Feed = this.feed;
-    data.name = this.name;
-    this.successModal.hide();
-    this.outputRss.emit(data);
-    this.url = '';
-    this.name = '';
+    const data: Feed = this.feed;
+    if (this.name) {
+      data.name = this.name;
+      this.successModal.hide();
+      this.outputRss.emit(data);
+      this.url = '';
+      this.name = '';
+    } else {
+      this.invalid = true
+    }
   }
 }
